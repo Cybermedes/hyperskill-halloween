@@ -1,4 +1,4 @@
-# Fright Night Coding Hyperskill 👻 
+# Fright Night Coding Hyperskill 👻
 
 Link to access the description of every challenge:
 
@@ -10,3 +10,5 @@ Link to access the description of every challenge:
 - [part 06](https://hyperskill.org/learn/daily/53140)
 - [part 07](https://hyperskill.org/learn/daily/53141)
 - [part 08](https://hyperskill.org/learn/daily/53142)
+- [part 09](https://hyperskill.org/learn/daily/53143)
+- [part 10](https://hyperskill.org/learn/daily/53144)

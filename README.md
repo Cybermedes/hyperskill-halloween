@@ -1,6 +1,10 @@
-# Fright Night Coding Hyperskill 👻
+# Fright Night Coding 👻
 
-Link to access the description of every challenge:
+A set of 10 coding challenges from Hyperskill for the Halloween week 🎃 🧙‍♂️.
+
+The problems were solved using Java (jdk 24) and C (C17). Each folder contains a dataset `.txt` file and source files.
+
+Link to access the description of every challenge and download datasets:
 
 - [part 01](https://hyperskill.org/learn/daily/53135)
 - [part 02](https://hyperskill.org/learn/daily/53136)

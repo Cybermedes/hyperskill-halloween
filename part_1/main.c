@@ -41,7 +41,7 @@ int main(void) {
     fclose(file);
 
     sort_array(number_frequency);
-    
+
     printf("Result: ");
     for (int i = 0; i < 4; i++) {
         printf("%c", number_frequency[i].digit);
@@ -62,6 +62,7 @@ void count_digit(DigitFrequency *freq, int value) {
 }
 
 void sort_array(DigitFrequency *freq) {
+    // Using bubble sort algorithm
     for (int i = 0; i < NUM_DIGITS - 1; i++) {
         for (int j = 0; j < NUM_DIGITS - i - 1; j++) {
             if (freq[j].frequency < freq[j + 1].frequency) {
@@ -72,6 +73,7 @@ void sort_array(DigitFrequency *freq) {
         }
     }
 
+    // If there are equal number of appearances, higher digit should come first
     for (int i = 0; i < NUM_DIGITS - 1; i++) {
         if (freq[i].frequency == freq[i + 1].frequency) {
             if (freq[i].digit < freq[i + 1].digit) {

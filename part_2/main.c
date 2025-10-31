@@ -20,9 +20,10 @@ int main(void) {
 
     int character = 0;
     size_t counter = 0;
+    
     while ((character = fgetc(file)) != EOF) {
         if (counter + 1 >= buff_size) { // Leave room for the '\0'
-            buff_size *= 2;
+            buff_size *= 2; // Increase buffer size if necessary
             char *temp = realloc(sequence, buff_size * sizeof(char));
             if (temp == NULL) {
                 perror("Failed to reallocate memory");
@@ -34,6 +35,7 @@ int main(void) {
             sequence = temp;
         }
 
+        // Don't the newline character
         if (character == '\n') {
             break;
         }
@@ -47,7 +49,9 @@ int main(void) {
     int result = 0;
     int degrees = 0;
     char *token = strtok(sequence, ",");
+    
     while (token != NULL) {
+        
         degrees = (int)strtol(token, NULL, 10);
         result += degrees;
 
@@ -60,8 +64,8 @@ int main(void) {
         token = strtok(NULL, ",");
     }
 
-    printf("Result: %d\n", result);
     free(sequence);
+    printf("Result: %d\n", result);
 
     return 0;
 }

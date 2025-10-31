@@ -19,7 +19,7 @@ public class Main {
     // 1,11001010001001111000111011001100
     public static void main(String[] args) {
         long phoneNumber = Long.parseLong(readFile());
-        long uintMax = ((long) Integer.MAX_VALUE) * 2 + 2;
+        long uintMax = ((long) Integer.MAX_VALUE) * 2 + 2; // Exercise considers 2^32 not 2^32-1
         System.out.println(uintMax);
         int overflows = 0;
 

@@ -27,7 +27,7 @@ int main(void) {
     }
 
     long long int phoneNumber = strtoll(number, NULL, 10);
-    long long int uintMax = UINT32_MAX + 1LL; // Exercise considers 2^32 not 2^32-1.
+    long long int uintMax = UINT32_MAX + 1LL; // Exercise considers 2^32 not 2^32-1
     int numberOfOverflows = 0;
 
     while (phoneNumber >= uintMax) {

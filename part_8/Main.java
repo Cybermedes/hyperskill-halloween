@@ -1,32 +1,35 @@
-import java.nio.file.*;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
-    // Option 1: Hardcoded dataset
-    private static final String DATASET = """
-        dqmbghlnfrwu dnhguwmlqrbf wprzdiogcvbtajsqh nidhcrugka rpizgqcwtdsahovbj lyndwkjvote dyetvknojwl
-    """.trim();
+    private static String readFile() {
+        String filename = "hyperskill-dataset-117528132.txt";
+        Path filepath = Path.of(filename);
 
-    public static void main(String[] args) throws IOException {
-        // Option 2: Uncomment this if reading from file instead
-        // Path pathDataSetDay8 = Paths.get("src/main/resources/hyperskill-dataset-day-8.txt");
-        // String datasetFromFile = Files.readString(pathDataSetDay8);
+        try (BufferedReader br = Files.newBufferedReader(filepath)) {
+            return br.readLine().trim();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+            return "";
+        }
+    }
 
-        String datasetPlaygroundDay08 = DATASET;
+    public static void main(String[] args) {
 
-        // Split dataset into individual words
-        List<String> allWords = Arrays.asList(datasetPlaygroundDay08.split("\\s+"));
+        List<String> words = Arrays.asList(readFile().split("\\s+"));
 
         // Find the first word that is NOT an anagram of any other
-        String foundNameThatIsNoAnagram = allWords.stream()
-            .filter(word1 -> allWords.stream().noneMatch(word2 -> areRealAnagrams(word1, word2)))
-            .findFirst()
-            .orElse("No unique word found");
+        String noAnagram = words.stream()
+                .filter(word1 -> words.stream().noneMatch(word2 -> areRealAnagrams(word1, word2)))
+                .findFirst()
+                .orElse("No unique word found");
 
-        System.out.println(foundNameThatIsNoAnagram);
+        System.out.println(noAnagram);
     }
 
     // Check if two words are real anagrams (same letters, not identical)

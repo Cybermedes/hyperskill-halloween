@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class Main {
+public class Part2 {
 
 	public static String readFile() {
 		String filename = "hyperskill-dataset-117443619.txt";

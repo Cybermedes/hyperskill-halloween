@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class Main {
+public class Part9 {
 
     public static class Node {
         int y, x;

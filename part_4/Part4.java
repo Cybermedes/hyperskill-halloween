@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class Part4 {
 
     public static final char[][] KEYPAD = {
             { 'A', 'B', 'C', 'D' },

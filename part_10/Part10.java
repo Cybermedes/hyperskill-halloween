@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Main {
+public class Part10 {
 
     public static List<String> readFile() {
         String filename = "hyperskill-dataset-117527537.txt";

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Main {
+public class PartOne {
 
     public static String readFile() {
         String filename = "hyperskill-dataset-117428238.txt";

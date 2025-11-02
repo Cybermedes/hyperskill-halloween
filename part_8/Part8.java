@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class Part8 {
 
     private static String readFile() {
         String filename = "hyperskill-dataset-117528132.txt";

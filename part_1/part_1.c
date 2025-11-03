@@ -5,14 +5,12 @@
 
 #define NUM_DIGITS 10
 
-typedef struct DigitFrequency {
+typedef struct Digit {
     char digit;
     int frequency;
-} DigitFrequency;
+} Digit;
 
-void count_digit(DigitFrequency *freq, int value);
-
-void sort_array(DigitFrequency *freq);
+void sort_array(Digit *freq);
 
 int main(void) {
 
@@ -22,23 +20,20 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
-    DigitFrequency number_frequency[NUM_DIGITS];
-    for (int i = 0; i < NUM_DIGITS; i++) {
-        number_frequency[i].digit = (char)(48 + i);
-        number_frequency[i].frequency = 0;
-    }
-
     int ch = 0;
-    int counter = 0;
-    while ((ch = fgetc(file)) != EOF) {
-        if (!isdigit(ch)) {
-            break;
+    int frequencies[64] = {0};
+    while ((ch = fgetc(file)) != EOF && ch != '\n' && ch != '\r') {
+        if (isdigit(ch)) {
+            frequencies[(int)ch]++;
         }
-
-        count_digit(number_frequency, ch);
-        counter++;
     }
     fclose(file);
+
+    Digit number_frequency[NUM_DIGITS] = {0};
+    for (int i = 0; i < NUM_DIGITS; i++) {
+        number_frequency[i].digit = (char)(i + 48);
+        number_frequency[i].frequency = frequencies[i + 48];
+    }
 
     sort_array(number_frequency);
 
@@ -51,22 +46,12 @@ int main(void) {
     return 0;
 }
 
-void count_digit(DigitFrequency *freq, int value) {
-    char digit = (char)value;
-    for (int i = 0; i < NUM_DIGITS; i++) {
-        if (freq[i].digit == digit) {
-            freq[i].frequency += 1;
-            break;
-        }
-    }
-}
-
-void sort_array(DigitFrequency *freq) {
+void sort_array(Digit *freq) {
     // Using bubble sort algorithm
     for (int i = 0; i < NUM_DIGITS - 1; i++) {
         for (int j = 0; j < NUM_DIGITS - i - 1; j++) {
             if (freq[j].frequency < freq[j + 1].frequency) {
-                DigitFrequency temp = freq[j];
+                Digit temp = freq[j];
                 freq[j] = freq[j + 1];
                 freq[j + 1] = temp;
             }
@@ -77,7 +62,7 @@ void sort_array(DigitFrequency *freq) {
     for (int i = 0; i < NUM_DIGITS - 1; i++) {
         if (freq[i].frequency == freq[i + 1].frequency) {
             if (freq[i].digit < freq[i + 1].digit) {
-                DigitFrequency temp = freq[i];
+                Digit temp = freq[i];
                 freq[i] = freq[i + 1];
                 freq[i + 1] = temp;
             }

@@ -10,6 +10,28 @@ typedef struct Letter {
     int first_index;
 } Letter;
 
+// Sort the array according to their order of appereance using bubble sort
+void sort_array(Letter *array) {
+    for (int i = 0; i < NUM_LETTERS - 1; i++) {
+        for (int j = 0; j < NUM_LETTERS - i - 1; j++) {
+            if (array[j].first_index > array[j + 1].first_index) {
+                Letter temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Set initial values and letters for the array
+void initialize_array(Letter *array) {
+    for (size_t i = 0; i < NUM_LETTERS; i++) {
+        array[i].character = 'a' + i;
+        array[i].frequency = 0;
+        array[i].first_index = -1;
+    }
+}
+
 int main(void) {
 
     FILE *file = fopen("hyperskill-dataset-117460572.txt", "r");
@@ -25,23 +47,20 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
-    for (size_t i = 0; i < NUM_LETTERS; i++) {
-        letters[i].character = 'a' + i;
-        letters[i].frequency = 0;
-        letters[i].first_index = 0;
-    }
+    initialize_array(letters);
 
     char ch = 0;
     int counter = 0;
-    while ((ch = fgetc(file)) != EOF) {
-        if (ch == '\n') {
-            break;
-        }
-
+    while ((ch = fgetc(file)) != EOF && ch != '\n') {
+        
         for (size_t i = 0; i < NUM_LETTERS; i++) {
             if (letters[i].character == ch) {
                 letters[i].frequency += 1;
-                letters[i].first_index = counter;
+                
+                if (letters[i].first_index == -1) {
+                    letters[i].first_index = counter;
+                }
+
                 break;
             }
         }
@@ -49,11 +68,15 @@ int main(void) {
     }
     fclose(file); // Close file
 
+    sort_array(letters);
+
+    printf("Result: ");
     for (size_t i = 0; i < NUM_LETTERS; i++) {
         if (letters[i].frequency == 1) {
-            printf("%c: %d\n", letters[i].character, letters[i].first_index);
+            printf("%c", letters[i].character);
         }
     }
+    puts("");
 
     free(letters); // Free memory
 
